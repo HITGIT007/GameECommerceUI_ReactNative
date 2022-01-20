@@ -1,9 +1,13 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Feather from 'react-native-vector-icons/Feather';
 import GamingImg from '../assets/gaming.svg';
 import {useNavigation} from '@react-navigation/native';
+//Permissions
+import {check, PERMISSIONS, RESULTS, request, requestMultiple, checkMultiple, openSettings} from 'react-native-permissions';
 import {
+  Button,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -15,11 +19,100 @@ import {
   //in an Animation.
 } from 'react-native';
 const Main = () => {
+
+  // const requestCall = () => {
+  //   request(PERMISSIONS.ANDROID.CALL_PHONE)
+  //   .then((respose) => console.log(respose))
+  // }
+  // const requestLocation = () => {
+  //   request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
+  //   .then((respose) => console.log(respose))
+  // }
+  
+  const requestMultiplePermissions = () => {
+    requestMultiple([PERMISSIONS.ANDROID.CALL_PHONE, PERMISSIONS.ANDROID.CALL_PHONE])
+    .then((statuses)=> {
+      console.log('Call', statuses[PERMISSIONS.ANDROID.CALL_PHONE]);
+      console.log('Location', statuses[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION]);
+    });
+  }
+
+
+  const checkMultiplePermission = () => {
+    checkMultiple([PERMISSIONS.ANDROID.CALL_PHONE, PERMISSIONS.ANDROID.CALL_PHONE])
+    .then((statuses)=> {
+      console.log('Call', statuses[PERMISSIONS.ANDROID.CALL_PHONE]);
+      console.log('Location', statuses[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION]);
+    });
+  }
+  // const checkLocationPermission = () => {
+  //   check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
+  // .then((result) => {
+  //   switch (result) {
+      
+  //     case RESULTS.DENIED:
+  //       console.log('The permission has not been requested / is denied but requestable');
+  //       break;
+  //     case RESULTS.LIMITED:
+  //       console.log('The permission is limited: some actions are possible');
+  //       break;
+  //     case RESULTS.GRANTED:
+  //       console.log('The permission is granted');
+  //       break;
+  //     case RESULTS.BLOCKED:
+  //       console.log('The permission is denied and not requestable anymore');
+  //       break;
+  //   }
+  // })
+  // .catch((error) => {
+  //   // …
+  // });
+  // }
+
+
+  React.useEffect(() => {
+    checkMultiplePermission()
+  },[])
+
+  // const checkCallPermission = () => {
+  //   check(PERMISSIONS.ANDROID.CALL_PHONE)
+  // .then((result) => {
+  //   switch (result) {
+      
+  //     case RESULTS.DENIED:
+  //       console.log('The permission has not been requested / is denied but requestable');
+  //       break;
+  //     case RESULTS.LIMITED:
+  //       console.log('The permission is limited: some actions are possible');
+  //       break;
+  //     case RESULTS.GRANTED:
+  //       console.log('The permission is granted');
+  //       break;
+  //     case RESULTS.BLOCKED:
+  //       console.log('The permission is denied and not requestable anymore');
+  //       break;
+  //   }
+  // })
+  // .catch((error) => {
+  //   // …
+  // });
+  // }
+
+  
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.safearr}>
+      
       <Text style={styles.txt}>Game On!!</Text>
+      
+      
+      <View style={{flexDirection: 'row' }}>
       <Icon name="heart-outline" size={30} color="red" />
+      <Feather name="settings" size={30}
+      onPress={()=>{openSettings().catch(() => 
+        console.warn('cannot open settings'));}}/>
+      </View>
+      
       <View style={styles.svgimg}>
         <GamingImg
           width={300}
@@ -27,10 +120,18 @@ const Main = () => {
           style={{transform: [{rotate: '-15deg'}]}}
         />
       </View>
-
+      
+      
       <TouchableOpacity
         style={styles.touch}
-        onPress={() => navigation.navigate('Home')}>
+        onPress={() => {
+        requestMultiplePermissions()
+          
+          // requestCall()
+          // requestLocation()
+          // checkCallPermission()
+          // checkLocationPermission()
+          navigation.navigate('Login')}}>
         <Text style={styles.txt1}>Let's Begin</Text>
         <MaterialIcons name="arrow-forward-ios" size={22} color="#FFFF00" />
       </TouchableOpacity>

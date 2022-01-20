@@ -17,7 +17,10 @@ import {windowWidth} from '../utils/Dimensions'
 import {freeGames, paidGames, sliderData} from '../model/data';
 import CustomSwitch from '../components/CustomSwitch';
 import ListItem from '../components/ListItem';
-const Home = () => {
+
+
+
+const Home = ({navigation}) => {
   const [gamesTab, setGamesTab] = useState(1);  
   const renderBanner = ({item, index}) => {
         return <BannerSlider data={item}/>
@@ -34,13 +37,16 @@ const Home = () => {
         <View style={styles.v1}>
           <Text
             style={styles.t1}>
-            Hello Prateek
+            Hello Hit Gamer
           </Text>
+          <TouchableOpacity onPress={() =>navigation.goBack()}>
           <ImageBackground
             source={require('../assets/images/user-profile.jpg')}
             style={{width: 35, height: 35}}
             imageStyle={{borderRadius: 25}}
           />
+          </TouchableOpacity>
+          
         </View>
         <View
           style={styles.v2}>
@@ -76,10 +82,32 @@ const Home = () => {
           onSelectSwitch={onSelectSwitch}/>
 
         </View>
-        <ListItem/>
         
-        {/* {gamesTab == 1 && <Text>Free Games</Text>}
-        {gamesTab == 2 && <Text>Paid Games</Text>} */}
+        
+        {gamesTab == 1 && 
+          freeGames.map(item =>(
+            <ListItem 
+            key={item.id}
+            photo = {item.poster}
+            title={item.title}
+            subTitle={item.subtitle}
+            isFree = {item.isFree}
+            
+            />
+          ))
+        }
+        {gamesTab == 2 && 
+        paidGames.map(item =>(
+          <ListItem 
+          key={item.id}
+          photo = {item.poster}
+          title={item.title}
+          subTitle={item.subtitle}
+          isFree = {item.isFree}
+          price={item.price}
+          />
+        ))
+        }
       </ScrollView>
     </SafeAreaView>
   );

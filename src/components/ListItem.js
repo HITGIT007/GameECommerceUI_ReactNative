@@ -1,22 +1,26 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {windowWidth} from '../utils/Dimensions';
-const ListItem = () => {
+const ListItem = ({photo, title, subTitle, isFree, price, onPress}) => {
   return (
     <View style={styles.v1}>
       <View style={styles.v2}>
         <Image
-          source={require('../assets/images/spiderman.webp')}
+          source={photo}
           style={styles.img1}
         />
-        <View>
-          <Text style={styles.t1}>Marvel</Text>
-          <Text style={styles.t2}>Spider-Man</Text>
+        <View style={{width: windowWidth - 220}}>
+          <Text style={styles.t1}>{subTitle}</Text>
+          <Text numberOfLines={1} style={styles.t2}>{title}</Text>
         </View>
       </View>
 
       <TouchableOpacity style={styles.to1}>
-        <Text style={styles.txt1}>Play</Text>
+        <Text style={styles.txt1}>
+          {isFree == 'Yes' && 'Play'}
+          {isFree == 'No' && price}
+
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -37,8 +41,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   img1: {
-    width: '55',
-    height: '55',
+    width: 55,
+    height: 55,
     borderRadius: 10,
     marginRight: 8,
   },

@@ -19,7 +19,7 @@ export const sliderData = [
       title: 'Spider-Man',
       subtitle: 'Marvel',
       isFree: 'No',
-      price: '$25.99',
+      price: 'Rs. 2599',
       id: '1',
     },
     {
@@ -27,7 +27,7 @@ export const sliderData = [
       title: 'Battlefield 2042',
       subtitle: 'EA',
       isFree: 'No',
-      price: '$19.99',
+      price: 'Rs. 1999',
       id: '2',
     },
     {
@@ -35,7 +35,7 @@ export const sliderData = [
       title: 'Spider-Man: Miles Morales',
       subtitle: 'Marvel',
       isFree: 'No',
-      price: '$29.99',
+      price: 'Rs. 2999',
       id: '3',
     },
     {
@@ -43,7 +43,7 @@ export const sliderData = [
       title: 'Halo Infinite',
       subtitle: 'Xbox Game',
       isFree: 'No',
-      price: '$24.99',
+      price: 'Rs. 2499',
       id: '4',
     },
     {
@@ -51,7 +51,7 @@ export const sliderData = [
       title: 'Far Cry 6',
       subtitle: 'Ubisoft',
       isFree: 'No',
-      price: '$15.99',
+      price: 'Rs. 1599',
       id: '5',
     },
     {
@@ -59,7 +59,7 @@ export const sliderData = [
       title: 'God of War: Ragnarok',
       subtitle: 'Sony',
       isFree: 'No',
-      price: '$25.99',
+      price: 'Rs. 2599',
       id: '6',
     },
   ];
@@ -104,7 +104,7 @@ export const sliderData = [
       poster: require('../assets/images/diablo-4.jpeg'),
       title: 'Diablo 4',
       subtitle: 'Blizzard Entertainment',
-      isFree: 'No',
+      isFree: 'Yes',
       id: '6',
     },
   ];
